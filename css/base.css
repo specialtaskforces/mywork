@@ -1,0 +1,148 @@
+/* =====================================================
+   base.css — Reset, custom properties, typography
+   ===================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+
+  /* Color tokens */
+  --c-gold:       #d4a843;
+  --c-champagne:  #f7e7c8;
+  --c-ivory:      #f2ead8;
+  --c-warm-white: #faf6f0;
+  --c-amber:      #f0a500;
+  --c-deep-navy:  #0a1628;
+  --c-stone:      #c9a96e;
+  --c-terracotta: #c4612a;
+  --c-burgundy:   #7a1f2e;
+  --c-dark-brown: #1a0f08;
+
+  /* UI */
+  --ui-text:      rgba(255,255,255,0.92);
+  --ui-subtext:   rgba(255,255,255,0.55);
+  --ui-overlay:   rgba(0,0,0,0.35);
+  --radius-btn:   3px;
+
+  /* Transitions */
+  --ease-smooth:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-cinema:  cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: var(--ui-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+  user-select: none;
+}
+
+/* ---- Canvas container ---- */
+#canvas-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+#canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ---- UI layer sits above canvas ---- */
+#ui-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none; /* children opt-in */
+}
+
+/* ---- Transition overlay ---- */
+#transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* ---- Visibility helpers ---- */
+.ui-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.ui-visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* ---- Loading ---- */
+#loading-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060810;
+  z-index: 50;
+  transition: opacity 1s ease;
+  pointer-events: all;
+}
+
+.loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.loading-ring {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid rgba(212,168,67,0.25);
+  border-top-color: var(--c-gold);
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+}
+
+/* ---- Scrollbar (hidden) ---- */
+::-webkit-scrollbar { display: none; }
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
