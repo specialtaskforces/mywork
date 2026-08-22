@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>A Journey — For You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/ui.css" />
+  <link rel="stylesheet" href="css/letter.css" />
+</head>
+<body>
+
+  <!-- Three.js renders here -->
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Full-screen transition overlay -->
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <!-- UI Layer — all interactive elements -->
+  <div id="ui-layer">
+
+    <!-- Loading -->
+    <div id="loading-screen">
+      <div class="loading-inner">
+        <div class="loading-ring"></div>
+        <p class="loading-label">Preparing your journey…</p>
+      </div>
+    </div>
+
+    <!-- Opening hero text -->
+    <div id="opening-title" class="ui-hidden">
+      <p class="opening-line" data-line="1">There's somewhere</p>
+      <p class="opening-line" data-line="2">I want to take you.</p>
+    </div>
+
+    <!-- Chapter title card -->
+    <div id="chapter-card" class="ui-hidden">
+      <p class="chapter-eyebrow" id="chapter-eyebrow"></p>
+      <h2 class="chapter-heading" id="chapter-heading"></h2>
+    </div>
+
+    <!-- Scene text / thoughts overlay -->
+    <div id="scene-text" class="ui-hidden"></div>
+
+    <!-- Primary CTA -->
+    <div id="cta-wrap" class="ui-hidden">
+      <button id="cta-btn" class="cta-button"></button>
+    </div>
+
+    <!-- Travel location title card -->
+    <div id="location-card" class="ui-hidden">
+      <p class="location-eyebrow">arriving in</p>
+      <h2 class="location-name" id="location-name-text"></h2>
+    </div>
+
+    <!-- Letter experience (CSS 3D) -->
+    <div id="letter-scene" class="ui-hidden">
+      <div id="letter-stage">
+        <div id="letter-envelope">
+          <div class="env-body">
+            <div class="env-seal">✦</div>
+            <p class="env-address">For You</p>
+          </div>
+          <div class="env-flap"></div>
+        </div>
+        <div id="letter-paper">
+          <div class="letter-inner">
+            <p class="letter-salutation">My dearest,</p>
+            <div id="letter-lines"></div>
+            <p class="letter-sign" id="letter-sign-name"></p>
+          </div>
+        </div>
+      </div>
+      <div id="letter-cta-wrap">
+        <button id="letter-open-btn" class="cta-button">OPEN</button>
+        <button id="letter-done-btn" class="cta-button ui-hidden">CONTINUE</button>
+      </div>
+    </div>
+
+    <!-- Emotional reaction (canvas) -->
+    <div id="reaction-scene" class="ui-hidden">
+      <canvas id="reaction-canvas"></canvas>
+      <button id="reaction-continue" class="cta-button ui-hidden">CONTINUE</button>
+    </div>
+
+    <!-- Cinema / Video placeholder -->
+    <div id="cinema-scene" class="ui-hidden">
+      <div class="cinema-room">
+        <div class="cinema-screen">
+          <div class="projector-beam"></div>
+          <div class="screen-content">
+            <p class="screen-placeholder">[ VIDEO_01 ]</p>
+            <p class="screen-sub">Your video or reel will appear here</p>
+          </div>
+        </div>
+      </div>
+      <button id="cinema-continue" class="cta-button">CONTINUE</button>
+    </div>
+
+    <!-- Playful animation scene -->
+    <div id="playful-scene" class="ui-hidden">
+      <canvas id="playful-canvas"></canvas>
+      <button id="playful-continue" class="cta-button ui-hidden">CONTINUE</button>
+    </div>
+
+    <!-- Memory frame (photo/reel viewer) -->
+    <div id="memory-frame" class="ui-hidden">
+      <div class="memory-inner">
+        <button class="memory-close" id="memory-close">✕</button>
+        <div id="memory-content"></div>
+      </div>
+    </div>
+
+    <!-- Final Proposal -->
+    <div id="proposal-screen" class="ui-hidden">
+      <div class="proposal-inner">
+        <p id="proposal-text" class="proposal-text"></p>
+        <div id="proposal-btns" class="ui-hidden">
+          <button id="yes-btn" class="proposal-yes">YES  ✦</button>
+          <button id="no-btn"  class="proposal-no">No…</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- YES Celebration -->
+    <div id="yes-screen" class="ui-hidden">
+      <canvas id="yes-canvas" aria-hidden="true"></canvas>
+      <p id="yes-message" class="yes-message"></p>
+    </div>
+
+    <!-- Audio toggle -->
+    <button id="audio-ctrl" class="audio-ctrl ui-hidden" aria-label="Toggle music">
+      <span id="audio-icon">♫</span>
+    </button>
+
+    <!-- Story progress bar (thin line at bottom) -->
+    <div id="progress-bar" class="ui-hidden">
+      <div id="progress-fill"></div>
+    </div>
+
+  </div><!-- /ui-layer -->
+
+  <!-- Three.js ES module via import map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- GSAP (global) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- App entry -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

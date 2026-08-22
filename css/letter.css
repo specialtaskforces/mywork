@@ -1,0 +1,204 @@
+/* =====================================================
+   letter.css — CSS 3D letter/envelope experience
+   ===================================================== */
+
+#letter-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  perspective: 1200px;
+  background: radial-gradient(ellipse at 50% 40%,
+    rgba(60, 35, 10, 0.5) 0%,
+    rgba(10, 5, 2, 0.8) 100%);
+}
+
+/* ---- Stage container ---- */
+#letter-stage {
+  position: relative;
+  width: min(460px, 90vw);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ---- Envelope ---- */
+#letter-envelope {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.8s ease;
+}
+
+.env-body {
+  background: linear-gradient(145deg, #f5e8c8, #e8d4a8, #d4b87a);
+  border-radius: 4px 4px 0 0;
+  padding: 40px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  min-height: 180px;
+  position: relative;
+}
+
+.env-seal {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c08020, #d4a843);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(192,128,32,0.5);
+}
+
+.env-address {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #5a3a10;
+  letter-spacing: 0.05em;
+}
+
+/* Envelope bottom flap (V-shape using clip-path) */
+.env-flap {
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(145deg, #e0c890, #c8a860);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  margin-top: -1px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Envelope hidden state (slides up) */
+#letter-envelope.open {
+  transform: translateY(-120%) scaleY(0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Letter Paper ---- */
+#letter-paper {
+  width: 100%;
+  background: linear-gradient(170deg, #fdf8f0, #f5ecd8);
+  border-radius: 0 0 4px 4px;
+  box-shadow:
+    0 16px 60px rgba(0,0,0,0.7),
+    inset 0 0 0 1px rgba(0,0,0,0.06),
+    inset 0 40px 60px rgba(255,255,255,0.15);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s ease 0.3s,
+    padding 0.8s ease;
+  padding: 0 36px;
+  position: relative;
+}
+
+/* Ruled lines effect */
+#letter-paper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(180,160,120,0.15) 32px
+  );
+  pointer-events: none;
+}
+
+#letter-paper.unfolded {
+  max-height: 600px;
+  opacity: 1;
+  padding: 36px 36px 40px;
+}
+
+.letter-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.letter-salutation {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #3a2008;
+  margin-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.letter-salutation.reveal { opacity: 1; }
+
+.letter-line {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: #2a1a06;
+  line-height: 2.1;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.letter-line.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-sign {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #3a2008;
+  text-align: right;
+  margin-top: 28px;
+  opacity: 0;
+  transition: opacity 0.8s ease 0.3s;
+}
+
+.letter-sign.reveal { opacity: 1; }
+
+/* ---- CTA row ---- */
+#letter-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  #letter-paper.unfolded {
+    max-height: 480px;
+  }
+
+  #letter-paper {
+    padding: 0 24px;
+  }
+
+  #letter-paper.unfolded {
+    padding: 28px 24px 32px;
+  }
+}

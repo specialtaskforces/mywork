@@ -1,0 +1,493 @@
+/* =====================================================
+   ui.css — All UI overlay components
+   ===================================================== */
+
+/* ========== Opening Title ========== */
+#opening-title {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+}
+
+.opening-line {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--c-champagne);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.opening-line.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== Chapter Card ========== */
+#chapter-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.chapter-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 12px;
+}
+
+.chapter-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 500;
+  color: var(--c-champagne);
+  line-height: 1.2;
+}
+
+/* ========== Scene Text / Thoughts ========== */
+#scene-text {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(680px, 88vw);
+  text-align: center;
+  pointer-events: none;
+}
+
+.scene-thought {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-style: italic;
+  color: var(--c-ivory);
+  line-height: 1.8;
+  letter-spacing: 0.015em;
+  opacity: 0;
+  transform: translateY(8px);
+  margin-bottom: 18px;
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+
+.scene-thought.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== CTA Button ========== */
+#cta-wrap {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.cta-button {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-champagne);
+  background: transparent;
+  border: 1px solid rgba(212,168,67,0.45);
+  padding: 14px 36px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+  outline: none;
+}
+
+.cta-button:hover {
+  background: rgba(212,168,67,0.12);
+  border-color: var(--c-gold);
+  color: var(--c-gold);
+  transform: translateY(-1px);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+/* ========== Location Card (travel) ========== */
+#location-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.location-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 10px;
+}
+
+.location-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--c-champagne);
+  line-height: 1;
+}
+
+/* ========== Audio Control ========== */
+.audio-ctrl {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+  z-index: 200;
+}
+
+.audio-ctrl:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.6);
+}
+
+.audio-ctrl.muted #audio-icon {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+
+/* ========== Progress Bar ========== */
+#progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  z-index: 50;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+#progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--c-gold));
+  width: 0%;
+  transition: width 1.2s var(--ease-cinema);
+}
+
+/* ========== Reaction Scene ========== */
+#reaction-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+#reaction-canvas {
+  width: min(500px, 90vw);
+  height: min(400px, 60vh);
+  display: block;
+}
+
+#reaction-continue {
+  pointer-events: auto;
+}
+
+/* ========== Cinema Scene ========== */
+#cinema-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  background: #050505;
+}
+
+.cinema-room {
+  width: min(900px, 92vw);
+}
+
+.cinema-screen {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #0a0808;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projector-beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 60%;
+  height: 100%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,240,200,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.screen-content {
+  text-align: center;
+}
+
+.screen-placeholder {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 8px;
+}
+
+.screen-sub {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.1);
+}
+
+#cinema-continue {
+  pointer-events: auto;
+}
+
+/* ========== Playful Scene ========== */
+#playful-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+#playful-canvas {
+  width: min(600px, 90vw);
+  height: min(400px, 55vh);
+  display: block;
+  border-radius: 8px;
+}
+
+#playful-continue {
+  pointer-events: auto;
+}
+
+/* ========== Proposal Screen ========== */
+#proposal-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(4,6,16,0.7) 0%, rgba(4,6,16,0.95) 100%);
+}
+
+.proposal-inner {
+  text-align: center;
+  max-width: min(680px, 88vw);
+  pointer-events: auto;
+}
+
+.proposal-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-style: italic;
+  color: var(--c-champagne);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  margin-bottom: 60px;
+  opacity: 0;
+}
+
+.proposal-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.proposal-yes {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #d4a843, #c08020);
+  border: none;
+  padding: 18px 52px;
+  border-radius: 2px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 40px rgba(212,168,67,0.3);
+}
+
+.proposal-yes:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 60px rgba(212,168,67,0.5);
+}
+
+.proposal-no {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.35);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 14px 28px;
+  border-radius: 2px;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.3s ease;
+}
+
+.proposal-no:hover {
+  color: rgba(255,255,255,0.55);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* ========== YES Screen ========== */
+#yes-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(4,6,16,0.6) 0%, #040610 100%);
+}
+
+#yes-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.yes-message {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-style: italic;
+  color: var(--c-champagne);
+  line-height: 1.6;
+  text-align: center;
+  max-width: min(700px, 88vw);
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========== Memory Frame ========== */
+#memory-frame {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 150;
+}
+
+.memory-inner {
+  position: relative;
+  width: min(700px, 90vw);
+  background: #0d0d0d;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 48px;
+  pointer-events: auto;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: color 0.2s;
+}
+
+.memory-close:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 640px) {
+  #opening-title {
+    bottom: 28%;
+  }
+
+  #cta-wrap {
+    bottom: 6%;
+  }
+
+  .cta-button {
+    font-size: 0.65rem;
+    padding: 13px 28px;
+    letter-spacing: 0.22em;
+  }
+
+  .audio-ctrl {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+  }
+}
