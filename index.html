@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Continuous Cinematic Love Story</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <!-- Three.js & GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Cinematic Letterbox Aspect Bars -->
+  <div class="cinematic-letterbox-top"></div>
+  <div class="cinematic-letterbox-bottom"></div>
+
+  <!-- Atmospheric Vignette & Color Grading Overlay -->
+  <div class="cinematic-vignette"></div>
+
+  <!-- 3D WebGL Canvas Viewport -->
+  <div id="webgl-container"></div>
+
+  <!-- Top HUD Bar -->
+  <div class="hud-top-bar">
+    <div class="hud-brand">An Odyssey For You</div>
+    <button id="audio-toggle-btn" class="hud-sound-btn" aria-label="Toggle Audio">🎵</button>
+  </div>
+
+  <!-- Slim Cinematic Progress Line Tracker -->
+  <div class="progress-line-container">
+    <div id="progress-tracker-text" class="progress-tracker-text">SCENE 01 · 01 / 06</div>
+    <div class="progress-line-track">
+      <div id="progress-line-fill" class="progress-line-fill"></div>
+    </div>
+  </div>
+
+  <!-- Minimal Editorial Lower-Third Story Overlay -->
+  <div id="story-overlay" class="editorial-overlay-layer">
+    <div class="editorial-inner-wrap">
+      <div id="chapter-badge" class="editorial-chapter-badge">SCENE 01 · ARRIVAL</div>
+      <h1 id="story-title" class="editorial-title">An Odyssey For You</h1>
+      <h2 id="story-subtitle" class="editorial-subtitle">A Continuous Cinematic Love Story</h2>
+      <div id="story-body" class="editorial-body">
+        <p class="opening-quote">"Step inside a world crafted entirely from my memories, my feelings, and our timeless journey together."</p>
+      </div>
+      
+      <button id="action-button" class="editorial-action-btn">
+        <span>START OUR JOURNEY</span> &rarr;
+      </button>
+
+      <!-- Proposal Interactive Controls -->
+      <div id="proposal-controls" class="proposal-btn-group" style="display: none;">
+        <button id="btn-proposal-yes" class="btn-proposal-yes">YES, WITH ALL MY HEART 💍❤️</button>
+        <button id="btn-proposal-no" class="btn-proposal-no">Let me think...</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Unfolding Handwritten Letter Modal -->
+  <div id="letter-modal" class="letter-modal-overlay">
+    <div class="letter-parchment-sheet">
+      <div id="letter-inner-content"></div>
+    </div>
+  </div>
+
+  <!-- Memory / Video / Reel Preview Modal -->
+  <div id="memory-modal" class="memory-modal-overlay">
+    <div class="memory-modal-card">
+      <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+      <h3 id="modal-title" class="modal-title">Memory</h3>
+      <div id="modal-media-container" class="modal-media-box"></div>
+      <p id="modal-caption" class="modal-caption"></p>
+    </div>
+  </div>
+
+  <!-- Application Modules -->
+  <script src="js/config.js?v=3"></script>
+  <script src="js/audio.js?v=3"></script>
+  <script src="js/camera.js?v=3"></script>
+  <script src="js/scenes/SceneManager.js?v=3"></script>
+  <script src="js/engine.js?v=3"></script>
+  <script src="js/ui.js?v=3"></script>
+</body>
+</html>
